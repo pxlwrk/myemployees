@@ -1,0 +1,67 @@
+<!-- ========== Left Sidebar Start ========== -->
+<div class="vertical-menu">
+
+
+     <!-- LOGO -->
+     <div class="navbar-brand-box">
+        <a href="{{ path('app_fancy_dashboard') }}" class="logo logo-dark">
+            <span class="logo-sm">
+                <img src="/images/logo-sm.svg" alt="" height="26">
+            </span>
+            <span class="logo-lg">
+                <img src="/images/logo-sm.svg" alt="" height="26"> <span class="logo-txt">PXLWRK</span>
+            </span>
+        </a>
+
+        <a href="{{ path('app_fancy_dashboard') }}" class="logo logo-light">
+            <span class="logo-sm">
+                <img src="/images/logo-sm.svg" alt="" height="26">
+            </span>
+            <span class="logo-lg">
+                <img src="/images/logo-sm.svg" alt="" height="26"> <span class="logo-txt">PXLWRK</span>
+            </span>
+        </a>
+    </div>
+
+    <button type="button" class="btn btn-sm px-3 font-size-16 header-item vertical-menu-btn">
+        <i class="fa fa-fw fa-bars"></i>
+    </button>
+
+    <div data-simplebar class="sidebar-menu-scroll">
+
+        <!--- Sidemenu -->
+        <div id="sidebar-menu">
+            <!-- Left Menu Start -->
+            <ul class="metismenu list-unstyled" id="side-menu">
+                <li class="menu-title" data-key="t-menu">Menu</li>
+
+                <li>
+                    <a href="{{ path('app_fancy_dashboard') }}">
+                        <i class="bx bx-home-circle nav-icon"></i>
+                        <span class="menu-item" data-key="t-dashboard">Dashboard</span>
+                    </a>
+                </li>
+
+                <li class="menu-title" data-key="t-applications">Anwendungen</li>
+
+                <li>
+                    <a href="{{ path('app_employee') }}">
+                        <i class="mdi mdi-account nav-icon"></i>
+                        <span class="menu-item" data-key="t-employee">Personal</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ path('app_team') }}">
+                        <i class="mdi mdi-account-multiple nav-icon"></i>
+                        <span class="menu-item" data-key="t-teams">Teams</span>
+                    </a>
+                </li>
+
+
+            </ul>
+        </div>
+        <!-- Sidebar -->
+    </div>
+</div>
+<!-- Left Sidebar End -->

@@ -29,11 +29,11 @@ class Employee
     #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $lastday = null;
 
-    #[ORM\Column]
-    private array $toe = [];
+    #[ORM\Column(length: 255)]
+    private ?string $toe = null;
 
-    #[ORM\Column]
-    private ?int $level = null;
+    #[ORM\Column(length: 255)]
+    private ?string $level = null;
 
     public function getId(): ?int
     {
@@ -100,24 +100,24 @@ class Employee
         return $this;
     }
 
-    public function getToe(): array
+    public function getToe(): ?string
     {
         return $this->toe;
     }
 
-    public function setToe(array $toe): self
+    public function setToe(?string $toe): self
     {
         $this->toe = $toe;
 
         return $this;
     }
 
-    public function getLevel(): ?int
+    public function getLevel(): ?string
     {
         return $this->level;
     }
 
-    public function setLevel(int $level): self
+    public function setLevel(?string $level): self
     {
         $this->level = $level;
 

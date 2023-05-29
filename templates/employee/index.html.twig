@@ -1,0 +1,196 @@
+{% set title = "Mitarbeiterinnen und Mitarbeiter" %}
+
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+
+        <!-- plugin css -->
+        <link href="/libs/jsvectormap/css/jsvectormap.min.css" rel="stylesheet" type="text/css" />
+
+        <!-- swiper css -->
+        <link rel="stylesheet" href="/libs/swiper/swiper-bundle.min.css">
+        {{ parent() }}
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+<!-- JAVASCRIPT -->
+<script src="/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="/libs/metismenujs/metismenujs.min.js"></script>
+<script src="/libs/simplebar/simplebar.min.js"></script>
+<script src="/libs/feather-icons/feather.min.js"></script>
+
+<!-- apexcharts -->
+    <script src="/libs/apexcharts/apexcharts.min.js"></script>
+
+    <!-- Vector map-->
+    <script src="/libs/jsvectormap/js/jsvectormap.min.js"></script>
+    <script src="/libs/jsvectormap/maps/world-merc.js"></script>
+
+    <!-- swiper js -->
+    <script src="/libs/swiper/swiper-bundle.min.js"></script>
+
+<script src="/js/pages/dashboard.init.js"></script>
+
+    <script src="/js/app.js"></script>
+{% endblock %}
+
+{% block body %}
+<div id="layout-wrapper">
+    {{ include('partials/topbar.html.twig', {pagetitle: 'layouts', title: 'Vertical'}) }}
+    {{ include('partials/sidebar.html.twig') }}
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <h5 class="card-title">Mitarbeiterinnen und Mitarbeiter <span
+                                                        class="text-muted fw-normal ms-2">({{ employees|length }})</span></h5>
+                                            </div>
+                                        </div><!-- end col -->
+                                        <div class="col-md-6">
+                                            <div class="d-flex flex-wrap align-items-start justify-content-md-end mt-2 mt-md-0 gap-2 mb-3">
+                                                <div>
+                                                    <ul class="nav nav-pills">
+                                                        <li class="nav-item">
+                                                            <a class="nav-link" href="contacts-list"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="List"><i class="uil uil-list-ul"></i></a>
+                                                        </li>
+                                                        <li class="nav-item">
+                                                            <a class="nav-link active" href="contacts-grid"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="Grid"><i class="uil uil-apps"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div>
+                                                    <a href="#" class="btn btn-light" data-bs-toggle="modal" data-bs-target="#addContactModal"><i class="uil uil-plus me-1"></i>
+                                                        Hinzufügen</a>
+                                                </div>
+                                                <div class="dropdown">
+                                                    <a class="btn btn-link text-dark dropdown-toggle shadow-none" href="#"
+                                                        role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                                        <i class="uil uil-ellipsis-h"></i>
+                                                    </a>
+                                                    <ul class="dropdown-menu dropdown-menu-end">
+                                                        <li><a class="dropdown-item" href="#">Action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                                                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                                                    </ul>
+                                                    <!-- end ul -->
+                                                </div>
+                                            </div>
+                                        </div><!-- end col -->
+                                    </div><!-- end row -->
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="addContactModal" tabindex="-1" aria-labelledby="addContactModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="addContactModalLabel">Neuen Eintrag hinzufügen</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body p-4">
+                                                    <div>
+                                                        {{ form_start(newForm)}}
+                                                        {{ form_rest(newForm) }}
+                                                    </div>
+                                                </div><!-- end modalbody -->
+                                            </div>
+                                            <!-- end modal content -->
+                                        </div>
+                                    </div>
+                                    <!-- end modal -->
+                                    
+                                    <div class="row">
+                                        {% for e in employees %}
+                                        <div class="col-xl-4 col-sm-6">
+                                            <div class="card">
+                                                <div class="card-body p-4">
+                                                    <div class="d-flex align-items-start">
+                                                        <div class="flex-shrink-0 avatar rounded-circle me-3">
+                                                            <img src="/images/users/avatar-{{ random(1, 10) }}.jpg" alt=""
+                                                                class="img-fluid rounded-circle">
+                                                        </div>
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <h5 class="font-size-15 mb-1 text-truncate"><a
+                                                                    href="pages-profile" class="text-dark">
+                                                                    {{ e.lastname }}, {{ e.firstname }}</a>
+                                                                <span class="badge badge-soft-secondary mb-0">{{ e.level }}</span>
+                                                            </h5>
+                                                        </div>
+                                                        
+                                                        <div class="flex-shrink-0 dropdown">
+                                                            <a class="text-body dropdown-toggle font-size-16" href="#"
+                                                                role="button" data-bs-toggle="dropdown"
+                                                                aria-haspopup="true">
+                                                                <i class="icon-xs" data-feather="more-horizontal"></i>
+                                                            </a>
+                                                            <div class="dropdown-menu dropdown-menu-end">
+                                                                <a class="dropdown-item" href="#">Edit</a>
+                                                                <a class="dropdown-item" href="#">Action</a>
+                                                                <a class="dropdown-item" href="#">Remove</a>
+                                                            </div>
+                                                        </div><!-- end dropdown -->
+                                                    </div>
+                                                    <p class="mt-4 text-muted">Curabitur non magna lobortis est tempus gravida
+                                                         ornare libero sed diam sed fringilla est.</p>
+                                                    <div class="pt-2">
+                                                        <button type="button" class="btn btn-soft-primary btn-sm w-md text-truncate"><i class="bx bx-user me-1 align-middle"></i> Kontakt</button>
+                                                        <button type="button" class="btn btn-primary btn-sm w-md text-truncate ms-2"><i class="bx bx-message-square-dots me-1 align-middle"></i> Profil</button>
+                                                    </div>
+                                                </div>
+                                                <!-- end card body -->
+                                            </div><!-- end card -->
+                                        </div><!-- end col -->
+                                        {% else %}
+                                        <div class="col-xl-4 col-sm-6">
+                                            <div class="card">
+                                                <div class="card-body p-4">
+                                                    <div class="d-flex align-items-start">
+                                                        <div class="flex-shrink-0 avatar rounded-circle me-3">
+                                                            <img src="/images/users/avatar-3.jpg" alt=""
+                                                                class="img-fluid rounded-circle">
+                                                        </div>
+                                                        <div class="flex-grow-1 overflow-hidden">
+                                                            <h5 class="font-size-15 mb-1 text-truncate"><a
+                                                                    href="pages-profile" class="text-dark">N. N.</a></h5>
+                                                        </div>
+                                                    </div>
+                                                    <p class="mt-4 text-muted">Noch kein Eintrag vorhanden.</p>
+                                                </div>
+                                                <!-- end card body -->
+                                            </div><!-- end card -->
+                                        </div><!-- end col -->
+                                        {% endfor %}
+                                    </div><!-- end row -->
+                                    
+                                </div><!-- end card body -->
+                            </div><!-- end card -->
+                        </div><!-- end col -->
+                    </div><!-- end row -->
+
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+            {{ include('partials/footer.html.twig') }}
+        </div>
+        <!-- end main content-->
+    
+</div>
+
+{% endblock %}

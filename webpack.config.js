@@ -81,7 +81,7 @@ Encore
             proxy: process.env.PROXY,
             files: [
                 {
-                    match: ["src/*.php"],
+                    match: ["src/**/.php"],
                 },
                 {
                     match: ["templates/**/*.twig"],
